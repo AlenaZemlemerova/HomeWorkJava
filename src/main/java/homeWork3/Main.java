@@ -69,7 +69,7 @@ public class Main {
         List<Integer> array = new ArrayList<>();
         Random random = new Random();
         for (int i = 0; i < 10; i++) {
-            int val = random.nextInt(10);
+            int val = random.nextInt(100);
             array.add(val);
         }
         System.out.println(Arrays.asList(array));
