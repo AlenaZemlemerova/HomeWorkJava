@@ -16,8 +16,8 @@ public class ChessBoard {
         }
         Random rand = new Random();
         for (int i = 0; i < 8;) {
-            int line = rand.nextInt(7);
-            int column = rand.nextInt(7);
+            int line = rand.nextInt(8);
+            int column = rand.nextInt(8);
             int counter = 0;
             for (int j = 0; j < 8 && counter == 0; j++) {
                 if (array[line][j].equals(" 1 ")) {
