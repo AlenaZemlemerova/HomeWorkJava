@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-
+        filterSelection(createCriterion());
     }
 
     /**
@@ -47,34 +47,91 @@ public class Main {
         criterion.put(3, "Операционная система");
         criterion.put(4, "Цвет");
 
-        System.out.println("Выберите параметр для фильтрации: " + criterion);
-        System.out.println("Введите число: ");
+        System.out.println("Параметры для фильтрации ноутбуков: " + "\n" + criterion);
+        System.out.print("Введите выбранное значение: ");
         Scanner scanner = new Scanner(System.in);
         int selectedCriterion = scanner.nextInt();
         return selectedCriterion;
     }
-    private static void filterSelection(int selectedCriterion, Laptop laptop){
+    private static void filterSelection(int selectedCriterion){
         if (selectedCriterion == 1){
-            filter1(laptop);
+            filter1(createLaptopSet());
         }
         else if (selectedCriterion == 2){
-            filter2(laptop);
+            filter2(createLaptopSet());
+        }
+        else if (selectedCriterion == 3){
+            filter3(createLaptopSet());
+        }
+        else if (selectedCriterion == 4){
+            filter4(createLaptopSet());
+        }
+        else System.out.println("Введено несуществующее значение");
+    }
+    private static void filter1(Set<Object> setLaptop) {
+        System.out.print("Введите необходимый объем ОЗУ (4, 6, 8, 16): ");
+        Scanner scanner1 = new Scanner(System.in);
+        int size1 = scanner1.nextInt();
+        String sizeRam = "ram=" + size1;
+        for (var item : setLaptop) {
+            String laptop = item.toString();
+            if (laptop.contains(sizeRam)) {
+                System.out.println(item);
+            }
         }
     }
-    private static void filter1(Laptop laptop){
-       System.out.println("Введите миниальный объем ОЗУ: ");
-       Scanner scanner = new Scanner(System.in);
-       int size = scanner.nextInt();
-       if (laptop.getRam() >= size){
-           System.out.println(laptop);
-       }
+    private static void filter2(Set<Object> setLaptop){
+        System.out.print("Введите необходимый объем ЖД (150, 200, 250, 500): ");
+        Scanner scanner2 = new Scanner(System.in);
+        int size2 = scanner2.nextInt();
+        String sizeSsd = "ssd=" + size2;
+        for (var item : setLaptop) {
+            String laptop = item.toString();
+            if (laptop.contains(sizeSsd)){
+                System.out.println(item);
+            }
+        }
     }
-    private static void filter2(Laptop laptop){
-        System.out.println("Введите миниальный объем ЖД: ");
-        Scanner scanner = new Scanner(System.in);
-        int size = scanner.nextInt();
-        if (laptop.getSsd() >= size){
-            System.out.println(laptop);
+    private static void filter3(Set<Object> setLaptop){
+        System.out.println("1 - Windows 7" + "\n" + "2 - Windows 8" + "\n" + "3 - Windows 11");
+        System.out.print("Введите выбранную ОС: ");
+        Scanner scanner3 = new Scanner(System.in);
+        int selectedOs = scanner3.nextInt();
+        String os = null;
+        if (selectedOs == 1) {
+            os = "Windows 7";
+        } else if (selectedOs == 2) {
+            os = "Windows 10";
+        } else if (selectedOs == 3) {
+            os = "Windows 11";
+        }
+        else System.out.println("Введено несуществующее значение");
+        for (var item : setLaptop) {
+            String laptop = item.toString();
+            if (laptop.contains(os)){
+                System.out.println(item);
+            }
+        }
+    }
+    private static void filter4(Set<Object> setLaptop){
+        System.out.println("1 - Black" + "\n" + "2 - White" + "\n" + "3 - Gray");
+        System.out.println("Введите значение выбранного цвета: ");
+        Scanner scanner3 = new Scanner(System.in);
+        int selectedColor = scanner3.nextInt();
+        String color = null;
+        if (selectedColor == 1) {
+            color = "Black";
+        } else if (selectedColor == 2) {
+            color = "White";
+        } else if (selectedColor == 3) {
+            color = "Gray";
+        }
+        else System.out.println("Введено несуществующее значение");
+        for (var item : setLaptop) {
+            String laptop = item.toString();
+            if (laptop.contains(color)){
+                System.out.println(item);
+            }
         }
     }
 }
